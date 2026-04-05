@@ -24,6 +24,7 @@ export async function proxy(request: NextRequest) {
             name,
             value,
             ...options,
+            secure: false
           });
           response = NextResponse.next({
             request: {
@@ -34,6 +35,7 @@ export async function proxy(request: NextRequest) {
             name,
             value,
             ...options,
+            secure: false
           });
         },
         remove(name: string, options: any) {
@@ -41,6 +43,7 @@ export async function proxy(request: NextRequest) {
             name,
             value: '',
             ...options,
+            secure: false
           });
           response = NextResponse.next({
             request: {
@@ -51,6 +54,7 @@ export async function proxy(request: NextRequest) {
             name,
             value: '',
             ...options,
+            secure: false
           });
         },
       },
@@ -59,8 +63,10 @@ export async function proxy(request: NextRequest) {
 
   const { data: { user } } = await supabase.auth.getUser();
 
-  // Protection des routes /admin
-  if (request.nextUrl.pathname.startsWith('/admin')) {
+  // Protection des routes /admin et / (Home)
+  const isProtectedPath = request.nextUrl.pathname === '/' || request.nextUrl.pathname.startsWith('/admin');
+  
+  if (isProtectedPath) {
     if (!user) {
       return NextResponse.redirect(new URL('/login', request.url));
     }
@@ -72,5 +78,5 @@ export async function proxy(request: NextRequest) {
 export default proxy;
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/', '/admin/:path*'],
 };

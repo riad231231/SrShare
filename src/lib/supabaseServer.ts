@@ -14,14 +14,14 @@ export async function createClient() {
         },
         set(name: string, value: string, options: any) {
           try {
-            cookieStore.set({ name, value, ...options })
+            cookieStore.set({ name, value, ...options, secure: false })
           } catch (error) {
             // Géré par le middleware en général sur les Server Components
           }
         },
         remove(name: string, options: any) {
           try {
-            cookieStore.set({ name, value: '', ...options })
+            cookieStore.set({ name, value: '', ...options, secure: false })
           } catch (error) {
             // Géré par le middleware
           }

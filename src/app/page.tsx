@@ -33,9 +33,7 @@ export default function Dashboard() {
   useEffect(() => {
     // 1. Vérification session
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) {
-        router.push('/login');
-      } else {
+      if (session) {
         setSession(session);
         fetchEvents(session.user.id);
       }
