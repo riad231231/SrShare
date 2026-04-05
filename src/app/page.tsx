@@ -36,9 +36,11 @@ export default function Dashboard() {
       if (session) {
         setSession(session);
         fetchEvents(session.user.id);
+      } else {
+        router.push('/login');
       }
     });
-  }, []);
+  }, [router]);
 
   const fetchEvents = async (userId: string) => {
     const { data, error } = await supabase
