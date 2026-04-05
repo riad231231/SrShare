@@ -53,3 +53,7 @@ ON storage.objects FOR SELECT TO public USING (bucket_id = 'event-photos');
 
 CREATE POLICY "Upload public autorisé dans event-photos"
 ON storage.objects FOR INSERT TO public WITH CHECK (bucket_id = 'event-photos');
+
+-- 4. Activer le Temps Réél (Realtime)
+-- Important pour le Live Wall
+ALTER PUBLICATION supabase_realtime ADD TABLE public.uploads;

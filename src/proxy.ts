@@ -1,7 +1,7 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   // Optionnel: Ne pas protéger si on est en développement local sans env vars
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return NextResponse.next();
 
