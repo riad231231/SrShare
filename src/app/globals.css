@@ -86,14 +86,47 @@ body {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0 1.25rem; /* Better breathing room on mobile */
 }
 
-h1, h2, h3 {
-  letter-spacing: -0.02em;
+/* Typography Scale */
+h1 {
+  font-size: clamp(2rem, 8vw, 2.75rem);
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 6vw, 2rem);
+}
+
+h3 {
+  font-size: clamp(1.1rem, 5vw, 1.3rem);
+}
+
+.premium-card {
+  background: var(--glass-card);
+  border-radius: 28px;
+  padding: 1.5rem; /* Reduced for mobile */
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .premium-card {
+    padding: 2rem; /* Restore for larger screens */
+  }
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Utilitaires pour éviter les coupures */
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

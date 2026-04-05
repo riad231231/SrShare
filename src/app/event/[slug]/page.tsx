@@ -41,7 +41,7 @@ export default async function EventPage({ params }: EventPageProps) {
   });
 
   return (
-    <div className="container">
+    <div className="container" style={{ paddingBottom: '4rem' }}>
       {/* Header Premium */}
       <header style={{ 
         textAlign: 'center', 
@@ -51,23 +51,19 @@ export default async function EventPage({ params }: EventPageProps) {
         <div style={{
           display: 'inline-flex',
           alignItems: 'center',
-          gap: '0.5rem',
+          gap: '0.4rem',
           color: 'var(--gold-soft)',
-          fontSize: '0.8rem',
+          fontSize: '0.75rem',
           textTransform: 'uppercase',
-          letterSpacing: '0.1em',
-          marginBottom: '1rem'
+          letterSpacing: '0.15em',
+          fontWeight: 700,
+          marginBottom: '0.75rem'
         }}>
-          <Sparkles size={14} />
+          <Sparkles size={12} />
           <span>Partage de souvenirs</span>
         </div>
         
-        <h1 style={{ 
-          fontSize: '2.5rem', 
-          fontWeight: '700',
-          marginBottom: '0.5rem',
-          color: 'var(--deep-gray)'
-        }}>
+        <h1 style={{ marginBottom: '0.5rem' }}>
           {event.name}
         </h1>
         
@@ -75,9 +71,10 @@ export default async function EventPage({ params }: EventPageProps) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '0.5rem',
+          gap: '0.4rem',
           color: 'var(--soft-gray)',
-          fontSize: '0.9rem'
+          fontSize: '0.9rem',
+          opacity: 0.8
         }}>
           <Calendar size={14} />
           <span>{formattedDate}</span>
