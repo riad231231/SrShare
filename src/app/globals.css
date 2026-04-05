@@ -86,18 +86,26 @@ body {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  padding: 0 1.25rem; /* Better breathing room on mobile */
+  padding: 0 1rem; /* Slightly reduced for tighter screens */
+  overflow: hidden; /* Prevent horizontal scroll */
 }
 
 /* Typography Scale */
 h1 {
-  font-size: clamp(2rem, 8vw, 2.75rem);
+  font-size: clamp(1.75rem, 8vw, 2.5rem); /* Slightly smaller base */
   line-height: 1.1;
   font-weight: 800;
+  text-align: center; /* Center by default on mobile */
+}
+
+@media (min-width: 480px) {
+  h1 {
+    text-align: left; /* Restore left align for tablet/desktop */
+  }
 }
 
 h2 {
-  font-size: clamp(1.5rem, 6vw, 2rem);
+  font-size: clamp(1.4rem, 6vw, 1.8rem);
 }
 
 h3 {
@@ -107,15 +115,16 @@ h3 {
 .premium-card {
   background: var(--glass-card);
   border-radius: 28px;
-  padding: 1.5rem; /* Reduced for mobile */
+  padding: 1rem; /* Smaller padding for maximum space */
   border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-md);
   width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 480px) {
   .premium-card {
-    padding: 2rem; /* Restore for larger screens */
+    padding: 2rem; 
   }
 }
 
@@ -129,4 +138,10 @@ a {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
