@@ -1,48 +1,100 @@
 :root {
-  /* Color Palette - Premium Event */
   --pearl: #FDFEFE;
   --champagne: #F5E6CA;
   --gold-soft: #C5A059;
+  --gold-dark: #A88644;
   --deep-gray: #1A1A1A;
   --soft-gray: #9E9E9E;
-  
-  /* Backgrounds */
   --bg-gradient: radial-gradient(circle at top left, #FFFFFF 0%, #FAF7F2 100%);
   --glass-bg: rgba(255, 255, 255, 0.65);
-  --glass-card: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(255, 255, 255, 0.4);
-  
-  /* Shadows */
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-
-  /* Font */
-  --font-family: var(--font-outfit), system-ui, sans-serif;
+  --glass-card: rgba(255, 255, 255, 0.92);
+  --glass-border: rgba(197, 160, 89, 0.18);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-glass: 0 4px 20px rgba(31, 38, 135, 0.06);
+  --font-family: var(--font-outfit), system-ui, -apple-system, sans-serif;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
 }
 
-* {
+/* ─── RESET ─── */
+*, *::before, *::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
-html, body {
+html {
   height: 100%;
+  /* prevents horizontal overflow site-wide */
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100%;
   width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
   color: var(--deep-gray);
   background: var(--bg-gradient);
   font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  /* Safe area for iPhone notch/home indicator */
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
-body {
-  display: flex;
-  flex-direction: column;
+/* ─── TYPOGRAPHY ─── */
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  word-break: break-word;
 }
 
-/* Glassmorphism Helper */
+h1 { font-size: clamp(1.6rem, 7vw, 2.5rem); font-weight: 800; }
+h2 { font-size: clamp(1.3rem, 5.5vw, 2rem); font-weight: 700; }
+h3 { font-size: clamp(1rem, 4.5vw, 1.3rem); font-weight: 700; }
+
+p {
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+a { color: inherit; text-decoration: none; }
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: var(--font-family);
+  cursor: pointer;
+}
+
+input, textarea {
+  font-family: var(--font-family);
+}
+
+/* ─── LAYOUT ─── */
+.container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  /* Horizontal padding that respects iPhone safe areas */
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
+}
+
+/* ─── GLASS ─── */
 .glass {
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
@@ -51,97 +103,73 @@ body {
   box-shadow: var(--shadow-glass);
 }
 
+/* ─── CARDS ─── */
 .premium-card {
   background: var(--glass-card);
-  border-radius: 24px;
-  padding: 2rem;
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
   border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-md);
+  width: 100%;
 }
 
-/* Button Premium Styles */
+/* ─── BUTTONS ─── */
 .btn-primary {
-  background: linear-gradient(135deg, var(--gold-soft) 0%, #A88644 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  width: 100%;
+  background: linear-gradient(135deg, var(--gold-soft) 0%, var(--gold-dark) 100%);
   color: white;
-  padding: 0.8rem 1.5rem;
-  border-radius: 12px;
+  padding: 0.9rem 1.5rem;
+  border-radius: var(--radius-sm);
   border: none;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.35);
+  /* Prevent text from being cut off */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 52px; /* Good tap target */
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(197, 160, 89, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(197, 160, 89, 0.45);
 }
 
 .btn-primary:active {
   transform: translateY(0);
 }
 
-/* Layout Utilities */
-.container {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 0 1rem; /* Slightly reduced for tighter screens */
-  overflow: hidden; /* Prevent horizontal scroll */
+.btn-primary:disabled {
+  opacity: 0.55;
+  transform: none;
+  cursor: not-allowed;
 }
 
-/* Typography Scale */
-h1 {
-  font-size: clamp(1.75rem, 8vw, 2.5rem); /* Slightly smaller base */
-  line-height: 1.1;
-  font-weight: 800;
-  text-align: center; /* Center by default on mobile */
+/* ─── ANIMATIONS ─── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@media (min-width: 480px) {
-  h1 {
-    text-align: left; /* Restore left align for tablet/desktop */
-  }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-h2 {
-  font-size: clamp(1.4rem, 6vw, 1.8rem);
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-h3 {
-  font-size: clamp(1.1rem, 5vw, 1.3rem);
-}
-
-.premium-card {
-  background: var(--glass-card);
-  border-radius: 28px;
-  padding: 1rem; /* Smaller padding for maximum space */
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-md);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-@media (min-width: 480px) {
-  .premium-card {
-    padding: 2rem; 
-  }
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* Utilitaires pour éviter les coupures */
-.text-truncate {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
+@keyframes pulse {
+  0% { transform: scale(0.9); opacity: 0.2; }
+  50% { transform: scale(1.1); opacity: 0.4; }
+  100% { transform: scale(0.9); opacity: 0.2; }
 }

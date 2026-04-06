@@ -1,58 +1,71 @@
+/* ─── LOGIN PAGE ─── */
+
 .container {
-  min-height: 100vh;
+  min-height: 100dvh; /* dvh for mobile browser with URL bar */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background: var(--bg-gradient);
-  padding: 1rem;
+  padding: 1.5rem 1rem;
+  /* Safe areas for iPhone */
+  padding-top: max(1.5rem, env(safe-area-inset-top));
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
 }
 
 .loginCard {
   width: 100%;
   max-width: 400px;
-  animation: fadeIn 0.8s ease-out;
+  animation: fadeIn 0.7s ease-out;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.75rem;
 }
 
 .header {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .iconBox {
-  margin: 0 auto 1rem;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   background: var(--champagne);
-  border-radius: 12px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .header h1 {
-  font-size: 1.5rem;
+  font-size: clamp(1.3rem, 6vw, 1.6rem);
+  font-weight: 800;
+  color: var(--deep-gray);
 }
 
 .header p {
   color: var(--soft-gray);
   font-size: 0.9rem;
+  font-weight: 400;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .errorMessage {
   background: #ffebee;
   color: #c62828;
-  padding: 0.75rem;
-  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
   font-size: 0.85rem;
   text-align: center;
+  border: 1px solid rgba(198, 40, 40, 0.15);
 }
 
 .inputGroup {
@@ -63,23 +76,29 @@
 
 .inputIcon {
   position: absolute;
-  left: 1rem;
+  left: 0.9rem;
   color: var(--gold-soft);
+  pointer-events: none;
+  flex-shrink: 0;
 }
 
 .input {
   width: 100%;
-  padding: 0.8rem 1rem 0.8rem 3rem;
-  border: 1px solid var(--glass-border);
+  padding: 0.85rem 1rem 0.85rem 2.75rem;
+  border: 1.5px solid var(--glass-border);
   background: white;
-  border-radius: 12px;
-  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+  font-size: 1rem; /* Never smaller than 16px to prevent iOS zoom */
+  font-family: var(--font-family);
   outline: none;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  color: var(--deep-gray);
+  min-height: 52px; /* Solid tap target */
 }
 
 .input:focus {
   border-color: var(--gold-soft);
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.12);
 }
 
 .spinner {
@@ -90,14 +109,5 @@
   text-align: center;
   font-size: 0.8rem;
   color: var(--soft-gray);
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  line-height: 1.4;
 }

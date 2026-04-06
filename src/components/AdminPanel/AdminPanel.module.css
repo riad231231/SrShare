@@ -1,16 +1,7 @@
-.header {
-  padding: 2.5rem 0 2rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Better on mobile */
-  text-align: center;
-}
+/* ─── ADMIN PANEL ─── */
 
-@media (min-width: 480px) {
-  .header {
-    align-items: flex-start;
-    text-align: left;
-  }
+.header {
+  padding: 2.5rem 0 1.5rem 0;
 }
 
 .topActions {
@@ -18,32 +9,34 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
-  width: 100%;
+  gap: 0.5rem;
 }
 
 .backLink {
-  color: var(--gold-soft);
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  font-size: 0.8rem;
-  font-weight: 600;
+  gap: 0.3rem;
+  color: var(--gold-soft);
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex-shrink: 0;
 }
 
 .statusBadge {
   background: var(--champagne);
-  color: var(--gold-soft);
-  padding: 0.35rem 0.8rem;
+  color: var(--gold-dark);
+  padding: 0.3rem 0.75rem;
   border-radius: 20px;
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-size: 0.65rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
 }
 
 .title {
-  margin-bottom: 0.4rem;
-  width: 100%;
+  margin-bottom: 0.35rem;
+  word-break: break-word;
 }
 
 .date {
@@ -51,167 +44,156 @@
   font-size: 0.85rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  width: 100%;
+  gap: 0.35rem;
 }
 
-@media (min-width: 480px) {
-  .date {
-    justify-content: flex-start;
-  }
-}
-
+/* ─── CARDS STACK (single column mobile) ─── */
 .grid {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 1.25rem;
   padding-bottom: 4rem;
-  width: 100%;
-}
-
-@media (min-width: 900px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  width: 100%;
+  gap: 1rem;
 }
 
+.card h3 {
+  font-size: 1.05rem;
+}
+
+.card p {
+  color: var(--soft-gray);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* ─── QR CODE ─── */
 .qrWrapper {
   background: white;
-  padding: 1rem;
-  border-radius: 20px;
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
   display: flex;
   justify-content: center;
+  align-items: center;
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--glass-border);
   width: 100%;
-  box-sizing: border-box;
+  overflow: hidden; /* critical: clips QR if it tries to overflow */
 }
 
 .qrWrapper svg {
-  max-width: 100% !important;
+  /* Make QR code scale to container width, never overflow */
+  width: 100% !important;
+  max-width: 200px !important;
   height: auto !important;
 }
 
+/* ─── URL BOX ─── */
 .urlBox {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: white;
-  padding: 0.6rem 0.75rem;
-  border-radius: 12px;
+  background: #f8f8f8;
+  padding: 0.65rem 0.75rem;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--glass-border);
-  overflow: hidden;
   width: 100%;
-  box-sizing: border-box;
+  overflow: hidden; /* critical */
 }
 
 .urlBox code {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: var(--soft-gray);
   flex: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-family: inherit;
+  min-width: 0; /* allows flex child to shrink and ellipsis to work */
 }
 
 .copyBtn {
-  background: none;
-  border: none;
+  background: white;
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
   cursor: pointer;
   padding: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  flex-shrink: 0;
+  color: var(--gold-soft);
   transition: background 0.2s;
+  width: 34px;
+  height: 34px;
 }
 
-.copyBtn:hover {
-  background: var(--champagne);
-}
+.copyBtn:hover { background: var(--champagne); }
 
 .previewLink {
   color: var(--gold-soft);
   font-size: 0.85rem;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  font-weight: 600;
-  justify-content: center;
+  gap: 0.35rem;
+  font-weight: 700;
 }
 
-@media (min-width: 480px) {
-  .previewLink {
-    justify-content: flex-start;
-  }
-}
-
-/* Stats section in ZIP Card */
+/* ─── STATS ─── */
 .stats {
   display: flex;
   gap: 1rem;
-  margin: 0.2rem 0;
 }
 
 .stat {
+  flex: 1;
+  background: white;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  gap: 0.25rem;
 }
 
 .statLabel {
   font-size: 0.7rem;
   color: var(--soft-gray);
-  margin-bottom: 0.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .statValue {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 800;
   color: var(--deep-gray);
+  line-height: 1;
 }
 
-.zipCard {
-  justify-content: center;
-}
+/* zipCard and fullWidth use inherited card styles */
 
-.fullWidth {
-  grid-column: 1 / -1;
-}
-
-/* Photo Gallery Management */
+/* ─── PHOTO GRID ─── */
 .photoGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns safer on small screens */
-  gap: 0.75rem;
-  margin-top: 0.5rem;
+  /* 2 equal columns, each cell 50% of container minus gap */
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
   width: 100%;
-}
-
-@media (min-width: 380px) {
-  .photoGrid {
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 1rem;
-  }
 }
 
 .photoItem {
   position: relative;
-  border-radius: 12px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
   aspect-ratio: 1/1;
   background: var(--champagne);
   border: 1px solid var(--glass-border);
+  /* Ensure the item fills the grid cell exactly */
   width: 100%;
 }
 
@@ -219,6 +201,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .photoInfo {
@@ -226,23 +209,32 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 0.4rem;
-  background: rgba(255, 255, 255, 0.9);
+  padding: 0.35rem 0.5rem;
+  background: rgba(255, 255, 255, 0.92);
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.65rem;
   font-weight: 600;
+  gap: 0.25rem;
+}
+
+.photoInfo span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
 }
 
 .deleteBtn {
   background: none;
   border: none;
-  color: #ff4444;
+  color: #e53935;
   cursor: pointer;
-  padding: 4px;
+  padding: 2px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 
-.deleteBtn:hover {
-  transform: scale(1.1);
-}
+.deleteBtn:hover { opacity: 0.7; }

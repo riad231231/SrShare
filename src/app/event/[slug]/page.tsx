@@ -42,81 +42,67 @@ export default async function EventPage({ params }: EventPageProps) {
 
   return (
     <div className="container" style={{ paddingBottom: '4rem' }}>
-      {/* Header Premium */}
-      <header style={{ 
-        textAlign: 'center', 
-        padding: '3rem 0 2rem 0',
-        animation: 'fadeIn 1s' 
-      }}>
+      {/* Header */}
+      <header style={{ textAlign: 'center', padding: '2.5rem 0 2rem 0', animation: 'fadeIn 0.7s ease-out' }}>
         <div style={{
           display: 'inline-flex',
           alignItems: 'center',
-          gap: '0.4rem',
+          gap: '0.35rem',
           color: 'var(--gold-soft)',
-          fontSize: '0.75rem',
+          fontSize: '0.7rem',
           textTransform: 'uppercase',
-          letterSpacing: '0.15em',
+          letterSpacing: '0.18em',
           fontWeight: 700,
           marginBottom: '0.75rem'
         }}>
-          <Sparkles size={12} />
+          <Sparkles size={11} />
           <span>Partage de souvenirs</span>
         </div>
-        
-        <h1 style={{ marginBottom: '0.5rem' }}>
+
+        <h1 style={{ marginBottom: '0.5rem', wordBreak: 'break-word' }}>
           {event.name}
         </h1>
-        
+
         <div style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '0.4rem',
+          gap: '0.35rem',
           color: 'var(--soft-gray)',
-          fontSize: '0.9rem',
-          opacity: 0.8
+          fontSize: '0.85rem',
+          opacity: 0.85
         }}>
-          <Calendar size={14} />
+          <Calendar size={13} />
           <span>{formattedDate}</span>
         </div>
       </header>
 
       <main>
-        {/* Zone d'Upload (Client Component) */}
-        <UploadZone 
-          eventId={event.id} 
-          eventSlug={event.slug} 
-        />
+        <UploadZone eventId={event.id} eventSlug={event.slug} />
 
-        {/* Séparateur élégant */}
+        {/* Divider */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
-          margin: '3rem 0',
-          gap: '1rem'
+          margin: '2.5rem 0',
+          gap: '0.75rem'
         }}>
-          <div style={{ flex: 1, height: '1px', background: 'var(--glass-border)' }}></div>
-          <span style={{ 
-            color: 'var(--gold-soft)', 
-            fontSize: '1.2rem',
-            fontStyle: 'italic'
-          }}>Galerie</span>
-          <div style={{ flex: 1, height: '1px', background: 'var(--glass-border)' }}></div>
+          <div style={{ flex: 1, height: '1px', background: 'var(--glass-border)' }} />
+          <span style={{ color: 'var(--gold-soft)', fontSize: '1rem', fontStyle: 'italic', fontWeight: 600 }}>Galerie</span>
+          <div style={{ flex: 1, height: '1px', background: 'var(--glass-border)' }} />
         </div>
 
-        {/* Galerie Live (Client Component) */}
         <LiveWall eventId={event.id} />
       </main>
 
       <footer style={{
         textAlign: 'center',
-        padding: '2rem 1rem',
+        padding: '2rem 0 1rem',
         color: 'var(--soft-gray)',
-        fontSize: '0.8rem',
-        opacity: 0.6
+        fontSize: '0.75rem',
+        opacity: 0.55
       }}>
-        <p>&copy; {new Date().getFullYear()} Qr Share - Souvenirs gravés.</p>
+        <p>&copy; {new Date().getFullYear()} Qr Share</p>
       </footer>
     </div>
   );
